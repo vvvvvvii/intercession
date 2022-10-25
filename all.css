@@ -44,6 +44,7 @@ body {
 }
 .invalid-feedback {
   display: block;
+  color: #face2c;
 }
 
 .btn-secondary {
@@ -59,4 +60,16 @@ body {
 .response-text {
   font-size: 1.25rem;
   margin-bottom: 5rem;
+}
+.response-text-sm {
+  border-bottom: 1px solid;
+  padding-bottom: 1rem;
+  margin-bottom: 4rem;
+  font-size: 0.875rem;
+  color: #faebd7;
+}
+@media screen and (min-width: 768px) {
+  .response-text-sm {
+    font-size: 1rem;
+  }
 }
