@@ -57,6 +57,66 @@ body {
   color: #e9d15e;
 }
 
+.star {
+  position: absolute;
+  background: #e9d15e;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.starAnimation1 {
+  -webkit-animation: fadeOut 2s infinite linear;
+  animation: fadeOut 2s infinite linear;
+}
+.starAnimation2 {
+  -webkit-animation: fadeOut2 2s infinite linear;
+  animation: fadeOut2 2s infinite linear;
+}
+@-webkit-keyframes fadeOut {
+  0% {
+    -webkit-opacity: 0.3;
+  }
+  50% {
+    -webkit-opacity: 1;
+  }
+  100% {
+    -webkit-opacity: 0.3;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+@-webkit-keyframes fadeOut2 {
+  0% {
+    -webkit-opacity: 1;
+  }
+  50% {
+    -webkit-opacity: 0.3;
+  }
+  100% {
+    -webkit-opacity: 1;
+  }
+}
+@keyframes fadeOut2 {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .response-text {
   font-size: 1.25rem;
   margin-bottom: 5rem;
