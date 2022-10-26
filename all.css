@@ -4,6 +4,9 @@
 body {
   background: #13336b;
 }
+li {
+  list-style: none;
+}
 
 .container {
   width: 80%;
