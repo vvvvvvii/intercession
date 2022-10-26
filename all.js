@@ -84,6 +84,10 @@ function handleResponse() {
 function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+function resetForm() {
+  $("#type").val("");
+  $("#content").val("");
+}
 
 $(function () {
   $("#submitBtn").on("click", function () {
@@ -104,8 +108,7 @@ $(function () {
     }
   });
   $("#backBtn").on("click", function () {
-    type = "";
-    content = "";
+    resetForm();
     $("#formSection").removeClass("d-none");
     $("#responseSection").addClass("d-none");
   });
