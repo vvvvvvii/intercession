@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="請為我代禱" />
+    <meta name="description" content="感恩與代禱表單" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>請為我代禱</title>
+    <title>感恩與代禱表單</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="bookmark" href="favicon.ico" />
@@ -25,7 +25,14 @@
       <li class="star starAnimation1" style="top: 25%; right: 8%;">★</li>  
     </ul>
     <div class="container">
-      <div id="formSection">
+      <!-- 選要代禱還是感恩 -->
+      <div id="chooseFormTypeSection">
+        <h2 class="mb-4">我想要...</h2>
+        <button type="button" class="w-75 btn btn-secondary mb-3" onclick="chooseFormType('intercession')">代禱</button>
+        <button type="button" class="w-75 btn btn-secondary" onclick="chooseFormType('thank')">感謝</button>
+      </div>
+      <!-- 感恩&代禱表單 -->
+      <div id="formSection" class="d-none">
         <form>
           <div class="mb-4">
             <label for="name" class="form-label">您希望如何被稱呼？ *</label>
@@ -37,7 +44,9 @@
             <input type="text" id="email" class="form-control"/>
           </div>
           <div class="mb-4">
-            <label for="type" class="form-label">代禱類別 *</label>
+            <label for="type" class="form-label">
+              <span class="toggleText"></span>類別 *
+            </label>
             <select name="" id="type" class="form-control">
               <option value="">
                 請選擇類別
@@ -52,19 +61,23 @@
             <p id="errorInfoType" class="d-none invalid-feedback">此為必填</p>
           </div>
           <div class="mb-4">
-            <label for="content" class="form-label">代禱事項 *</label>
+            <label for="content" class="form-label">
+              <span class="toggleText"></span>事項 *
+            </label>
             <textarea id="content" class="form-control" rows="6"></textarea>
             <p id="errorInfoContent" class="d-none invalid-feedback">此為必填</p>  
           </div>
-          <button type="button" id="submitBtn" class="btn btn-secondary w-50">送出</button>
+          <button type="button" id="submitBtn" class="btn btn-secondary w-50 mb-3">送出</button>
+          <button type="button" onclick="backToPreviousPage('choose type')" class="btn btn-outline-secondary w-lg-50 w-50">取消並回上頁</button>
         </form>  
       </div>
       <div id="responseSection" class="d-none">
         <div class="response-text">
-          <p class="response-text-sm d-md-block d-none">我們已收到您的代禱需求，願神賜平安給您</p>
+          <p class="response-text-sm d-md-block d-none">
+            我們已收到您的<span class="toggleText"></span>需求，願神賜平安給您</p>
           <div class="response-text-sm d-md-none">
             <p class="mb-0">
-              我們已收到您的代禱需求
+              我們已收到您的<span class="toggleText"></span>需求
             </p>
             <p class="mb-0">
               願神賜平安給您
@@ -73,10 +86,14 @@
           <p id="responseContent"></p>
           <p id="responseVerse"></p>
         </div>
-        <button type="button" id="backBtn" class="btn btn-secondary w-lg-50 w-75">新增其他代禱事項</button>
+        <button type="button" onclick="backToPreviousPage('form')" class="btn btn-secondary w-lg-50 w-75 mb-3">
+          新增其他<span class="toggleText"></span>事項
+        </button>
+        <button type="button" onclick="backToPreviousPage('choose type')" class="btn btn-secondary w-lg-50 w-75">
+          回首頁
+        </button>
       </div>
     </div>
-    
     <script
       src="https://code.jquery.com/jquery-3.6.1.min.js"
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="

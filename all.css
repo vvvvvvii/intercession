@@ -55,6 +55,14 @@ li {
   background: #685306;
   color: #e9d15e;
 }
+.btn-outline-secondary {
+  border: 1px solid #face2c;
+  color: #face2c;
+}
+.btn-outline-secondary:hover {
+  background: #685306;
+  color: #e9d15e;
+}
 
 .star {
   position: absolute;

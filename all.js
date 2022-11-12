@@ -1,10 +1,21 @@
-const url =
-  "https://docs.google.com/forms/d/e/1FAIpQLSceO10fNBakZ5TxJtWlyti1j4uKnr2EEhtXutvsE5m3gCMdJg/formResponse";
-let name = "";
-let email = "";
-let type = "";
-let content = "";
+let formID = "";
 
+let responseName = "";
+let responseEmail = "";
+let responseType = "";
+let responseContent = "";
+
+function chooseFormType(type) {
+  if (type === "intercession") {
+    formID = "1FAIpQLSceO10fNBakZ5TxJtWlyti1j4uKnr2EEhtXutvsE5m3gCMdJg";
+    $(".toggleText").text("代禱");
+  } else if (type === "thank") {
+    formID = "1FAIpQLSf2qCaqoQQ1IWc-EWyhwN5PEKWyXy5TIkNvLTsZhfm41PKePA";
+    $(".toggleText").text("感恩");
+  }
+  $("#chooseFormTypeSection").addClass("d-none");
+  $("#formSection").removeClass("d-none");
+}
 function checkBlankInput(name, type, content) {
   const checkArr = [
     { name: name, errorMsg: "#errorInfoName" },
@@ -21,6 +32,7 @@ function checkBlankInput(name, type, content) {
   return checkArr.every((item) => item.name.length !== 0);
 }
 function sendData(data) {
+  const url = `https://docs.google.com/forms/d/e/${formID}/formResponse`;
   $.ajax({
     type: "POST",
     url,
@@ -36,7 +48,7 @@ function sendData(data) {
 }
 function handleResponse() {
   let responseData = [];
-  switch (type) {
+  switch (responseType) {
     case "身心健康":
       responseData = [
         "喜樂的心乃是良藥；憂傷的靈使骨枯乾。-箴言 17:22 ",
@@ -96,28 +108,53 @@ function resetForm() {
   $("#type").val("");
   $("#content").val("");
 }
-
-$(function () {
-  $("#submitBtn").on("click", function () {
-    name = $("#name").val();
-    email = $("#email").val() || "未填寫";
-    type = $("#type").val();
-    content = $("#content").val();
-
-    const readyToSend = checkBlankInput(name, type, content);
-    const data = {
-      "entry.11614073": name,
-      "entry.184427323": email,
-      "entry.50517289": type,
-      "entry.1370981891": content,
-    };
-    if (readyToSend) {
-      sendData(data);
-    }
-  });
-  $("#backBtn").on("click", function () {
+function backToPreviousPage(previousPage) {
+  if (previousPage === "choose type") {
+    resetForm();
+    $("#chooseFormTypeSection").removeClass("d-none");
+    $("#formSection").addClass("d-none");
+    $("#responseSection").addClass("d-none");
+  } else if (previousPage === "form") {
     resetForm();
     $("#formSection").removeClass("d-none");
     $("#responseSection").addClass("d-none");
+  }
+}
+
+$(function () {
+  $("#submitBtn").on("click", function () {
+    responseName = $("#name").val();
+    responseEmail = $("#email").val() || "未填寫";
+    responseType = $("#type").val();
+    responseContent = $("#content").val();
+
+    const readyToSend = checkBlankInput(
+      responseName,
+      responseType,
+      responseContent
+    );
+    let data = {};
+    if (formID === "1FAIpQLSceO10fNBakZ5TxJtWlyti1j4uKnr2EEhtXutvsE5m3gCMdJg") {
+      //type === "intercession"
+      data = {
+        "entry.11614073": responseName,
+        "entry.184427323": responseEmail,
+        "entry.50517289": responseType,
+        "entry.1370981891": responseContent,
+      };
+    } else if (
+      formID === "1FAIpQLSf2qCaqoQQ1IWc-EWyhwN5PEKWyXy5TIkNvLTsZhfm41PKePA"
+    ) {
+      // type === "thank"
+      data = {
+        "entry.314721071": responseName,
+        "entry.1346974115": responseEmail,
+        "entry.1771742666": responseType,
+        "entry.939741843": responseContent,
+      };
+    }
+    if (readyToSend) {
+      sendData(data);
+    }
   });
 });
