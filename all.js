@@ -137,6 +137,9 @@ $(function () {
     if (formID === "1FAIpQLSceO10fNBakZ5TxJtWlyti1j4uKnr2EEhtXutvsE5m3gCMdJg") {
       //type === "intercession"
       data = {
+        "entry.1381379527": `${new Date().getFullYear()}/${
+          new Date().getMonth() + 1
+        }/${new Date().getDate()}`,
         "entry.11614073": responseName,
         "entry.184427323": responseEmail,
         "entry.50517289": responseType,
@@ -147,7 +150,10 @@ $(function () {
     ) {
       // type === "thank"
       data = {
-        "entry.314721071": responseName,
+        "entry.314721071": `${new Date().getFullYear()}/${
+          new Date().getMonth() + 1
+        }/${new Date().getDate()}`,
+        "entry.1030621076": responseName,
         "entry.1346974115": responseEmail,
         "entry.1771742666": responseType,
         "entry.939741843": responseContent,
